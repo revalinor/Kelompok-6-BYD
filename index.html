@@ -14,7 +14,7 @@
         <img id="bg-showroom" src="BYD_360.png"> <!-- Sesuaikan nama file gambar -->
         <a-asset-item id="model-mobil" src="2024_byd_seagull.glb"> <!-- Sesuaikan nama file model 3D -->
         </a-asset-item>
-        <video id="video-panel" src="BYD ADD.mp4" autoplay loop muted playsinline crossorigin="anonymous"></video>
+        <video id="video-panel" src="BYD ADS.mp4" autoplay loop muted playsinline preload="auto"></video>
       </a-assets>
 
       <!-- BACKGROUND 360 -->
@@ -70,5 +70,20 @@
       <a-camera position="0 1.6 0"></a-camera>
 
     </a-scene>
+
+    <button id="play-video-button" style="position: fixed; bottom: 20px; left: 20px; z-index: 999; padding: 12px 18px; font-size: 16px; background: #2196f3; color: white; border: none; border-radius: 6px; cursor: pointer;">Play Video</button>
+
+    <script>
+      const video = document.querySelector('#video-panel');
+      const button = document.querySelector('#play-video-button');
+
+      button.addEventListener('click', () => {
+        if (video.paused) {
+          video.play().catch(error => {
+            console.warn('Video play prevented:', error);
+          });
+        }
+      });
+    </script>
   </body>
 </html>
