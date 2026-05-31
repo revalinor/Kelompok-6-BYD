@@ -14,10 +14,20 @@
         <img id="bg-showroom" src="BYD_360.png"> <!-- Sesuaikan nama file gambar -->
         <a-asset-item id="model-mobil" src="2024_byd_seagull.glb"> <!-- Sesuaikan nama file model 3D -->
         </a-asset-item>
+        <video id="video-panel" src="video.mp4" autoplay loop muted playsinline crossorigin="anonymous"></video>
       </a-assets>
 
       <!-- BACKGROUND 360 -->
       <a-sky src="#bg-showroom" rotation="0 -90 0"></a-sky>
+
+      <!-- 0. VIDEO PANEL DI BELAKANG MOBIL -->
+      <a-plane
+        width="6"
+        height="3.4"
+        position="0 1.8 -7"
+        rotation="0 0 0"
+        material="shader: flat; src: #video-panel; side: double; transparent: true; opacity: 1"
+      ></a-plane>
 
       <!-- 1. ALAS HITAM (BLACK PLANE) DI BAWAH MOBIL -->
       <!-- rotation="-90 0 0" bikin posisinya tidur/mendatar -->
