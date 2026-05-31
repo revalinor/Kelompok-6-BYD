@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>360 Showroom - BYD Seagull</title>
+    <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
+  </head>
+  <body>
+    <!-- Tambahin settingan shadow di a-scene biar bayangannya lebih halus (pcfsoft) -->
+    <a-scene shadow="type: pcfsoft">
+      
+      <!-- ASSETS -->
+      <a-assets>
+        <img id="bg-showroom" src="BYD_360.png"> <!-- Sesuaikan nama file gambar -->
+        <a-asset-item id="model-mobil" src="2024_byd_seagull.glb"> <!-- Sesuaikan nama file model 3D -->
+        </a-asset-item>
+      </a-assets>
+
+      <!-- BACKGROUND 360 -->
+      <a-sky src="#bg-showroom" rotation="0 -90 0"></a-sky>
+
+      <!-- 1. ALAS HITAM (BLACK PLANE) DI BAWAH MOBIL -->
+      <!-- rotation="-90 0 0" bikin posisinya tidur/mendatar -->
+      <!-- material="roughness: 0.4; metalness: 0.2" bikin alasnya agak elegan, nggak cuma hitam pekat biasa -->
+      <a-plane 
+        color="#050505" 
+        width="8" 
+        height="8" 
+        position="0 0 -4" 
+        rotation="-90 0 0" 
+        shadow="receive: true"
+        material="roughness: 0.4; metalness: 0.2">
+      </a-plane>
+
+      <!-- 2. MODEL 3D MOBIL -->
+      <!-- NOTE: Ganti angka scale di bawah dengan angka yang udah pas di layar lu -->
+      <a-gltf-model 
+        src="#model-mobil" 
+        position="0 0 -4" 
+        rotation="0 45 0" 
+        scale="100 100 100" 
+        shadow="cast: true">
+      </a-gltf-model>
+
+      <!-- 3. PENCAHAYAAN (LIGHTING) KHUSUS -->
+      
+      <!-- Base light (Cahaya dasar yang redup) -->
+      <a-light type="ambient" color="#ffffff" intensity="0.3"></a-light>
+      
+      <!-- Main light (Cahaya dari atas agak depan, BIKIN BAYANGAN) -->
+      <a-light type="directional" color="#ffffff" intensity="1.5" position="-2 5 2" castShadow="true"></a-light>
+      
+      <!-- Accent lights (Bikin bodi mobil mengkilap) -->
+      <!-- Lampu sorot kanan dengan efek neon kebiruan dikit -->
+      <a-light type="point" color="#4fc3f7" intensity="1" position="3 2 -2"></a-light> 
+      <!-- Lampu sorot kiri belakang warna putih -->
+      <a-light type="point" color="#ffffff" intensity="0.8" position="-3 1 -5"></a-light> 
+
+      <!-- KAMERA -->
+      <a-camera position="0 1.6 0"></a-camera>
+
+    </a-scene>
+  </body>
+</html>
